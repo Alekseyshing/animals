@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 //state type
 
 type State = {
-  username: string
+  login: string
   password: string
   isButtonDisabled: boolean
   helperText: string
@@ -44,14 +44,14 @@ type State = {
 };
 
 const initialState: State = {
-  username: '',
+  login: '',
   password: '',
   isButtonDisabled: true,
   helperText: '',
   isError: false
 };
 
-type Action = { type: 'setUsername', payload: string }
+type Action = { type: 'setLogin', payload: string }
   | { type: 'setPassword', payload: string }
   | { type: 'setIsButtonDisabled', payload: boolean }
   | { type: 'loginSuccess', payload: string }
@@ -60,10 +60,10 @@ type Action = { type: 'setUsername', payload: string }
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'setUsername':
+    case 'setLogin':
       return {
         ...state,
-        username: action.payload
+        login: action.payload
       };
     case 'setPassword':
       return {
@@ -100,9 +100,10 @@ const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const LOGIN_URL = 'https://acits-test-back.herokuapp.com/api/login';
   const navigate = useNavigate();
+  // const win = window.sessionStorage;
   
   useEffect(() => {
-    if (state.username.trim() && state.password.trim()) {
+    if (state.login.trim() && state.password.trim()) {
       dispatch({
         type: 'setIsButtonDisabled',
         payload: false
@@ -113,17 +114,19 @@ const Login = () => {
         payload: true
       });
     }
-  }, [state.username, state.password]);
+  }, [state.login, state.password]);
 
   const handleLogin = () => {
-    authService(state.username, state.password,  LOGIN_URL)
+    authService(state.login, state.password,  LOGIN_URL)
     
-    if (state.username === 'test_user' && state.password === '123456') {
+    if (state.login === 'test_user' && state.password === '123456') {
       dispatch({
         type: 'loginSuccess',
         payload: 'Login Successfully'
       });
-      navigate('/today')
+      // win.getItem(state.login);
+      // win.getItem(state.password);
+      navigate('/today');
     } else {
       dispatch({
         type: 'loginFailed',
@@ -138,10 +141,10 @@ const Login = () => {
     }
   };
 
-  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> =
+  const handleLoginChange: React.ChangeEventHandler<HTMLInputElement> =
     (event) => {
       dispatch({
-        type: 'setUsername',
+        type: 'setLogin',
         payload: event.target.value
       });
     };
@@ -169,7 +172,7 @@ const Login = () => {
               label="Username"
               placeholder="Username"
               margin="normal"
-              onChange={handleUsernameChange}
+              onChange={handleLoginChange}
               onKeyPress={handleKeyPress}
             />
             <TextField
