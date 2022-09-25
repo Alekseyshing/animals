@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeaderProps } from './Header.props';
 import { Link } from "react-router-dom";
 
