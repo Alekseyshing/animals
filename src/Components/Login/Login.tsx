@@ -33,8 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-//state type
-
 type State = {
   login: string
   password: string
@@ -100,7 +98,6 @@ const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const LOGIN_URL = 'https://acits-test-back.herokuapp.com/api/login';
   const navigate = useNavigate();
-  // const win = window.sessionStorage;
   
   useEffect(() => {
     if (state.login.trim() && state.password.trim()) {
@@ -124,8 +121,6 @@ const Login = () => {
         type: 'loginSuccess',
         payload: 'Login Successfully'
       });
-      // win.getItem(state.login);
-      // win.getItem(state.password);
       navigate('/today');
     } else {
       dispatch({
@@ -156,7 +151,6 @@ const Login = () => {
         payload: event.target.value
       });
     }
-
 
   return (
     <form className={classes.container} noValidate autoComplete="off">

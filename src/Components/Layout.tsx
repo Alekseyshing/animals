@@ -6,6 +6,6 @@ interface ILayoutProps {
 
 export function Layout({ children }: ILayoutProps) {
   return (
-    <div className={"max-w-[1920px] mx-auto min-h-[40vw]"}>{children}</div>
+    <div className={"max-w-[1920px] mx-auto"}>{children}</div>
   );
 }
