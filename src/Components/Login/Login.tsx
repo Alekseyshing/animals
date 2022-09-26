@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {authService} from '../services/authService';
 import { useNavigate  } from "react-router-dom";
-
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';

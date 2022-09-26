@@ -1,11 +1,19 @@
-import { useEffect, useState } from "react"
+import { useState } from 'react';
 
-export function useToken (){
-  const [token, setToken] = useState('');
-  useEffect(() => {
-    if(window.__token__){
-      setToken(window.__token__)
+export default function useToken() {
+  const getToken = () => {
+    let userToken
+    const tokenString = localStorage.getItem('token');
+    if(tokenString !== null){
+      userToken = JSON.parse(tokenString);
     }
-  }, [])
-  return [token]
+    return userToken
+  };
+
+  const [myToken, setToken] = useState(getToken());
+
+
+  return {
+    myToken
+  }
 }

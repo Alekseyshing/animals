@@ -4,23 +4,9 @@ import { useEffect, useState } from "react";
 
 
 interface IExecutionsData {
-  id: string,
-  time?: number,
-  type?: string,
-  animal?: {
-    id: string,
-    name: string,
-    age: number,
-    height: number,
-    heightUnit: string,
-    weight: number,
-    weightUnit: string,
-    spec: {
-      id: string,
-      name: string,
-      type: string
-    }
-  }
+  time: number,
+  type: string,
+  name: string,
 }
 
 export function useExecutionsData(token: string | null) {
@@ -36,49 +22,28 @@ export function useExecutionsData(token: string | null) {
 
   const URL = "https://acits-test-back.herokuapp.com/api/executions/today";
 
-
   useEffect(() => {
     try {
-      if (token && token.length > 0 && token !== "undefined") {
-        axios.get(URL, CONFIG)
-          .then((resp) => {
-            const postsData = resp.data;
-            console.log(postsData);
+      axios.get(URL, CONFIG)
+        .then((resp) => {
+          const postsData = resp.data.results;
+          const dataList: IExecutionsData[] = [];
 
-            const dataList: IExecutionsData[] = [];
-
-   
-            for (let i = 0; i < postsData.length; i++) {
-              dataList.push({
-                id: postsData.id,
-                type: "",
-                animal: {
-                  id: "",
-                  name: "",
-                  age: 0,
-                  height: 0,
-                  heightUnit: "",
-                  weight: 0,
-                  weightUnit: "",
-                  spec: {
-                    id: "",
-                    name: "",
-                    type: ""
-                  }
-                }
-              });
-            }
-
-            if (postsData !== undefined) {
-              setPosts(dataList);
-            }
-          })
-      }
+          for (let i = 0; i < postsData.length; i++) {
+            dataList.push({
+              type: postsData[i].type,
+              time: postsData[i].time,
+              name: postsData[i].animal.spec.name,
+            })          
+          }
+          if (postsData !== undefined) {
+            setPosts(dataList)
+          }
+        })
     } catch (error) {
       console.error(error)
     }
   }, [token])
-
-  return [posts];
+  return [posts]
 }
 

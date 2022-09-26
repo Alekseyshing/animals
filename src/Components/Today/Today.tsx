@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
 import { Link } from "react-router-dom";
 import { useExecutionsData } from '../../hooks/useExecutions';
+import useToken from '../../hooks/useToken';
 
 
 export const Today = (): JSX.Element => {
-  const token = localStorage.getItem('token')
- 
-  const [posts] = useExecutionsData('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMjNkYTkzLTJhN2MtNDBkMS04NTExLTc2Yjc4MDIxZmFmYiIsInJvbGUiOiJDVVNUT01FUiIsImxvZ2luIjoidGVzdF91c2VyIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVXNlciIsImlhdCI6MTY2NDE5NDk5MCwiZXhwIjoxNjY0MTk1NTkwfQ.ZT-6oYuCP3KWT6s8fyOdkcuepTBhU0RhQbIgMZ93gn8');
 
+  const token = useToken()
+  console.log(token.myToken);
+  const [posts] = useExecutionsData(token.myToken);
   console.log(posts);
   
+
   return (
     <>
       {token && token !== null && (
