@@ -13,6 +13,7 @@ import  Login  from './Components/Login/Login';
 import { Today } from './Components/Today/Today';
 import { Animals } from './Components/Animals/Animals';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
