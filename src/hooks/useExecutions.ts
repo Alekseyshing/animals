@@ -36,7 +36,7 @@ export function useExecutionsData(token: string | undefined) {
             dataList.push({
               type: postsData[i].type,
               time: postsData[i].time.slice(0, 5),
-              name: postsData[i].animal.spec.name,
+              name: postsData[i].animal.name,
               id: postsData[i].id,
               onClick: () => { }
             })          

@@ -5,7 +5,7 @@ import useToken from '../../hooks/useToken';
 import { useExecutionsData } from '../../hooks/useExecutions';
 import { TodayAddComponent } from '../TodayAddComponent/TodayAddComponent';
 import { tokenContext } from "../../context/tokenContext";
-import { TodayErrComponent } from "../TodayErrComponent/TodayErr";
+import { TodayErrComponent } from "../TodayErrComponent/TodayErrComponent";
 
 
 export const Today = (): JSX.Element => {

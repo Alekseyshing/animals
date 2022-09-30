@@ -22,7 +22,7 @@ export const TodayAddComponent = (): JSX.Element => {
     const POSTS = [
       {
         element: [<ExecutionsCard type={post.type} name={post.name} time={post.time} key={post.id} />],
-        className: `${''}`,
+        className: `${'w-full gap-2 text-xl text-black'}`,
       }
     ].map(generateId)
 
@@ -39,32 +39,12 @@ export const TodayAddComponent = (): JSX.Element => {
 
   return (
     <div>
-        <div className="flex flex-col gap-10 px-20 items-center justify-center">
+        <div className="flex flex-col gap-10 h-96 px-20 items-center justify-center">
           <h2 className="text-2xl font-bold">Расписание животных с назначениями на сегодня</h2>
-          <ul>
+          <ul className='flex flex-col gap-5'>
             {genericPosts}
           </ul>
         </div>
     </div>
-
-    // <>
-    //   {token.myToken === "undefined" && token.myToken === null && (
-    //     <div className='flex flex-col max-w-[600px] hover:shadow-lg duration-300 ease-in mx-auto items-center justify-center p-10 gap-4 border-2 rounded-lg border-solid'>
-    //       <h2 className='text-base  font-bold'>Время сеанса истекло</h2>
-    //       <div className='flex gap-2'>
-    //         <p className='text-sm'>Пожалуйста</p>
-    //         <Link to='/login' className='text-lime-600 hover:text-lime-400 duration-150 ease-in text-sm font-bold'>авторизуйтесь</Link>
-    //       </div>
-    //     </div>
-    //   )}
-    //   {token.myToken && token.myToken !== "undefined" && (
-    //     <div className="flex flex-col gap-10 px-20 items-center justify-center">
-    //       <h2 className="text-2xl font-bold">Расписание животных с назначениями на сегодня</h2>
-    //       <ul>
-    //         {genericPosts}
-    //       </ul>
-    //     </div>
-    //   )}
-    // </>
   );
 }
