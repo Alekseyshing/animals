@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 interface IExecutionsData {
   time: string,
   type: string,
@@ -12,13 +11,14 @@ interface IExecutionsData {
   onClick: (id: string) => void;
 }
 
-export function useExecutionsData(token: string | null) {
+export function useExecutionsData(token: string | undefined) {
   const [posts, setPosts] = useState<IExecutionsData[]>();
+  const getAuthorizationHeader = () => `Bearer ${token}`;
 
   const CONFIG = {
     headers: {
-      'Authorization': `bearer ${token}`,
-      'Content-Type': 'application/json'
+      'Authorization': getAuthorizationHeader(),
+      'Content-Type': 'application/json',
     }
   };
 

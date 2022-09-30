@@ -4,18 +4,21 @@ import { postsContext } from "../../context/postsContext";
 import useToken from '../../hooks/useToken';
 import { useExecutionsData } from '../../hooks/useExecutions';
 import { TodayAddComponent } from '../TodayAddComponent/TodayAddComponent';
+import { tokenContext } from "../../context/tokenContext";
+import { TodayErrComponent } from "../TodayErrComponent/TodayErr";
 
 
 export const Today = (): JSX.Element => {
-  const token = useToken()
-  const [posts] = useExecutionsData(token.myToken);
+  const token = useToken();
+  console.log(token.myToken);
+
+  const [posts] = useExecutionsData(`${token.myToken}`);
 
   return (
-    <postsContext.Provider value={posts}>
-      <div className="flex flex-col gap-10 px-20 items-center justify-center">
-        <h2 className="text-2xl font-bold">Расписание животных с назначениями на сегодня</h2>
-        <TodayAddComponent />
-      </div>
-    </postsContext.Provider>
+    <tokenContext.Provider value={token.myToken}>
+      <postsContext.Provider value={posts}>
+          {token.myToken ? <TodayAddComponent /> : <TodayErrComponent/>}
+      </postsContext.Provider>
+    </tokenContext.Provider>
   );
 }

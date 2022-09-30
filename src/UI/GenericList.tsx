@@ -36,10 +36,3 @@ export function GenericList({ list }: IGenericListProps){
   );
 }
 
-// const jsxs = [
-//   <li key={0}>Content 0</li>,
-//   <li key={1}>Content 1</li>,
-//   <li key={2}>Content 2</li>,
-//   <li key={3}>Content 3</li>,
-//   <li key={4}>Content 4</li>
-// ]

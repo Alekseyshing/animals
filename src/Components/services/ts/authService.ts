@@ -3,7 +3,7 @@ import axios from 'axios'
 export const authService = (login: string, password: string, url: string) => {
   return axios.post(url, { login, password }).then(response => {
     if (response.data.accessToken) {
-      const EXPIRE_TIME = 600000;
+      const EXPIRE_TIME = 12000;
       localStorage.setItem('user', JSON.stringify(response.data.user));
       localStorage.setItem('token', JSON.stringify(response.data.accessToken));
 

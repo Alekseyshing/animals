@@ -1,13 +1,15 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import {authService} from '../services/ts/authService';
-import { useNavigate  } from "react-router-dom";
+import { authService } from '../services/ts/authService';
+import { useNavigate } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+import useToken from '../../hooks/useToken';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -97,7 +99,9 @@ const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const LOGIN_URL = 'https://acits-test-back.herokuapp.com/api/login';
   const navigate = useNavigate();
-  
+  authService(state.login, state.password, LOGIN_URL);
+  const token = useToken();
+
   useEffect(() => {
     if (state.login.trim() && state.password.trim()) {
       dispatch({
@@ -113,14 +117,12 @@ const Login = () => {
   }, [state.login, state.password]);
 
   const handleLogin = () => {
-    authService(state.login, state.password,  LOGIN_URL)
-    
     if (state.login === 'test_user' && state.password === '123456') {
       dispatch({
         type: 'loginSuccess',
         payload: 'Login Successfully'
       });
-      navigate('/today');
+      navigate('/today')
     } else {
       dispatch({
         type: 'loginFailed',
