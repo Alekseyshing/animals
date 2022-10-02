@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-export const TodayErrComponent = () => {
+export const ExpiredComponent = () => {
   return (
     <div className='flex flex-col h-96 my-auto min-w-[320px] max-w-[600px] hover:shadow-lg hover:bg-slate-100 duration-300 ease-in mx-auto items-center justify-center gap-4 border-2 rounded-lg border-solid p-5 mb-10'>
         <h2 className='text-base font-bold'>Время сеанса истекло</h2>

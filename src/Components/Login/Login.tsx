@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { authService } from '../services/ts/authService';
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
-import useToken from '../../hooks/useToken';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -99,10 +98,9 @@ const Login = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const LOGIN_URL = 'https://acits-test-back.herokuapp.com/api/login';
   const navigate = useNavigate();
-  authService(state.login, state.password, LOGIN_URL);
-  const token = useToken();
 
   useEffect(() => {
+    authService(state.login, state.password, LOGIN_URL);
     if (state.login.trim() && state.password.trim()) {
       dispatch({
         type: 'setIsButtonDisabled',
@@ -116,20 +114,7 @@ const Login = () => {
     }
   }, [state.login, state.password]);
 
-  const handleLogin = () => {
-    if (state.login === 'test_user' && state.password === '123456') {
-      dispatch({
-        type: 'loginSuccess',
-        payload: 'Login Successfully'
-      });
-      navigate('/today')
-    } else {
-      dispatch({
-        type: 'loginFailed',
-        payload: 'Incorrect username or password'
-      });
-    }
-  };
+
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.keyCode === 13 || event.which === 13) {
@@ -152,6 +137,26 @@ const Login = () => {
         payload: event.target.value
       });
     }
+
+
+
+
+
+  const handleLogin = () => {
+    if (state.login === 'test_user' && state.password === '123456') {
+      dispatch({
+        type: 'loginSuccess',
+        payload: 'Login Successfully'
+      });
+      
+      navigate('/today')
+    } else {
+      dispatch({
+        type: 'loginFailed',
+        payload: 'Incorrect username or password'
+      });
+    }
+  };
 
   return (
     <form className={classes.container} noValidate autoComplete="off">

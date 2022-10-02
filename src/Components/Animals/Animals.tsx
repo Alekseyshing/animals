@@ -1,8 +1,8 @@
 import React from 'react'
-import { TodayErrComponent } from '../TodayErrComponent/TodayErrComponent';
+import { ExpiredComponent } from '../ExpiredComponent/ExpiredComponent';
 
 export const Animals = (): JSX.Element => {
   return (
-    <TodayErrComponent/>
+    <ExpiredComponent/>
   );
 }

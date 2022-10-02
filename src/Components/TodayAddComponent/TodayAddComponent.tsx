@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from "react-router-dom";
 import { postsContext } from "../../context/postsContext";
-import useToken from '../../hooks/useToken';
 import { GenericList } from "../../UI/GenericList";
 import { ExecutionsCard } from "../ExecutionCard/ExecutionsCard";
 import { generateId, generateRandomString } from "../services/ts/generateRandomIndex";
@@ -10,7 +8,6 @@ import { merge } from "../services/ts/merge";
 
 
 export const TodayAddComponent = (): JSX.Element => {
-  const token = useToken()
   const posts = useContext(postsContext);
   if (!posts) {
     return null!

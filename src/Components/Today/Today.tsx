@@ -5,7 +5,7 @@ import useToken from '../../hooks/useToken';
 import { useExecutionsData } from '../../hooks/useExecutions';
 import { TodayAddComponent } from '../TodayAddComponent/TodayAddComponent';
 import { tokenContext } from "../../context/tokenContext";
-import { TodayErrComponent } from "../TodayErrComponent/TodayErrComponent";
+import { ExpiredComponent } from "../ExpiredComponent/ExpiredComponent";
 
 
 export const Today = (): JSX.Element => {
@@ -17,7 +17,7 @@ export const Today = (): JSX.Element => {
   return (
     <tokenContext.Provider value={token.myToken}>
       <postsContext.Provider value={posts}>
-          {token.myToken ? <TodayAddComponent /> : <TodayErrComponent/>}
+          {token.myToken ? <TodayAddComponent /> : <ExpiredComponent/>}
       </postsContext.Provider>
     </tokenContext.Provider>
   );
