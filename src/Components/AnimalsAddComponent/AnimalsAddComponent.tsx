@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { animalsContext } from '../../context/animalsContext';
 import { GenericList } from "../../UI/GenericList";
 import { AnimalsCard } from '../AnimalsCard/AnimalsCard';
+import { Pagination } from '../Pagination/Pagination';
 import { generateId, generateRandomString } from "../services/ts/generateRandomIndex";
 import { merge } from "../services/ts/merge";
 
@@ -12,16 +13,26 @@ export const AnimalsAddComponent = (): JSX.Element => {
   const animals = useContext(animalsContext);
 
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [offset, setOffset] = useState(0);
+  const [perPage] = useState(5);
+
+  const indexOfLastAnimal = currentPage * perPage;
+  const indexOfFirstAnimal = indexOfLastAnimal - perPage;
+  const currentAnimals = animals?.slice(indexOfFirstAnimal, indexOfLastAnimal);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  }
 
   if (!animals) {
     return null!
   };
 
-  const genericAnimals = animals?.map((animal) => {
+  const genericAnimals = currentAnimals?.map((animal) => {
     const ANIMALS = [
       {
-        element: [<AnimalsCard name={animal.name} specName={animal.specName} onClick={() => { }} />],
-        className: `${'w-full gap-2 text-xl text-black'}`,
+        element: [<AnimalsCard key={generateRandomString()} height={animal.height}  heightUnit={animal.heightUnit} weight={animal.weight} weightUnit={animal.weightUnit} age={animal.age} name={animal.name} specName={animal.specName} onClick={() => { }} />],
+        className: `${'min-w-[160px] w-full gap-2 text-xl text-black'}`,
       }
     ].map(generateId)
 
@@ -36,8 +47,6 @@ export const AnimalsAddComponent = (): JSX.Element => {
   })
 
 
-
-
   return (
     <div>
       <div className="flex flex-col gap-10 px-20 items-center justify-center">
@@ -45,6 +54,7 @@ export const AnimalsAddComponent = (): JSX.Element => {
         <ul className='flex flex-col gap-5'>
           {genericAnimals}
         </ul>
+        <Pagination animalsPerPage={perPage} totalAnimals={animals.length} paginate={paginate} />
       </div>
     </div>
   );

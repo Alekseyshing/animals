@@ -7,6 +7,12 @@ interface IExecutionsData {
   type: string,
   name: string,
   id?: string,
+  specName: string,
+  age: number,
+  weight: number,
+  weightUnit: string,
+  height: number,
+  heightUnit: string,
   element?: React.ReactNode,
   onClick: (id: string) => void;
 }
@@ -38,10 +44,16 @@ export function useExecutionsData(token: string | undefined) {
               time: postsData[i].time.slice(0, 5),
               name: postsData[i].animal.name,
               id: postsData[i].id,
+              specName: postsData[i].animal.spec.name,
+              age: postsData[i].animal.age,
+              weight: postsData[i].animal.weight,
+              weightUnit: postsData[i].animal.weightUnit,
+              height: postsData[i].animal.height,
+              heightUnit: postsData[i].animal.heightUnit,
               onClick: () => { }
-            })          
+            })
           }
-          
+
           if (postsData !== undefined) {
             setPosts(dataList)
           }

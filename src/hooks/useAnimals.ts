@@ -2,9 +2,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface IAnimalsData {
+export interface IAnimalsData {
   name: string,
   specName: string,
+  age: number,
+  weight: number,
+  weightUnit: string,
+  height: number, 
+  heightUnit: string,
   element?: React.ReactNode,
   onClick: (id: string) => void;
 }
@@ -12,9 +17,6 @@ interface IAnimalsData {
 export function useAnimalsData(token: string | undefined) {
   const [animals, setAnimals] = useState<IAnimalsData[]>();
   const getAuthorizationHeader = () => `Bearer ${token}`;
-  const [offset, setOffset] = useState(0);
-  const [perPage] = useState(5);
-  const [pageCount, setPageCount] = useState(0);
 
   const CONFIG = {
     headers: {
@@ -23,12 +25,13 @@ export function useAnimalsData(token: string | undefined) {
     }
   };
 
-  const ANIMALS_URL = `https://acits-test-back.herokuapp.com/api/animals?limit=${perPage}&offset=${offset}`;
+  const ANIMALS_URL = `https://acits-test-back.herokuapp.com/api/animals`;
 
   useEffect(() => {
     try {
       axios.get(ANIMALS_URL, CONFIG)
         .then((resp) => {
+
           const animalsData = resp.data.results;
           const dataList: IAnimalsData[] = [];
 
@@ -36,6 +39,11 @@ export function useAnimalsData(token: string | undefined) {
             dataList.push({
               name: animalsData[i].name,
               specName: animalsData[i].spec.name,
+              age: animalsData[i].age,
+              weight: animalsData[i].weight,
+              weightUnit: animalsData[i].weightUnit,
+              height: animalsData[i].height, 
+              heightUnit: animalsData[i].heightUnit,
               onClick: () => { }
             })
           }
