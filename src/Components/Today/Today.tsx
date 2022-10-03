@@ -15,7 +15,7 @@ export const Today = (): JSX.Element => {
   return (
     <tokenContext.Provider value={token.myToken}>
       <postsContext.Provider value={posts}>
-          {token.myToken ? <TodayAddComponent /> : <ExpiredComponent/>}
+          {token.myToken ? <TodayAddComponent/> : <ExpiredComponent/>}
       </postsContext.Provider>
     </tokenContext.Provider>
   );

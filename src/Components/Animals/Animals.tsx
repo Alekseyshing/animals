@@ -13,7 +13,7 @@ export const Animals = (): JSX.Element => {
   return (
     <tokenContext.Provider value={token.myToken}>
     <animalsContext.Provider value={animals}>
-        {token.myToken ? <AnimalsAddComponent /> : <ExpiredComponent/>}
+        {token.myToken ? <AnimalsAddComponent/> : <ExpiredComponent/>}
     </animalsContext.Provider>
   </tokenContext.Provider>
   );

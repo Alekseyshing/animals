@@ -12,7 +12,7 @@ export interface IAnimalsCard {
   age: number,
   weight: number,
   weightUnit: string,
-  height: number, 
+  height: number,
   heightUnit: string,
   element?: React.ReactNode,
   onClick: (id: string) => void,
@@ -39,16 +39,16 @@ export function AnimalsCard({ name, specName, age, weight, weightUnit, height, h
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <h1>Карточка животного</h1>
+          <span className='font-bold'>Карточка животного</span>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText component={'div'} id="alert-dialog-description">
             <div className='flex flex-col gap4 items-center justify-center'>
-              <p>Кличка: {name}</p>
-              <p>Порода: {specName}</p>
-              <p>Возраст: {age}</p>
-              <p>Вес: {weight} {weight ? weightUnit : 'нет данных'}</p>
-              <p>Рост: {height} {height ? heightUnit : 'нет данных'}</p>
+              <span>Кличка: {name}</span>
+              <span>Порода: {specName}</span>
+              <span>Возраст: {age}</span>
+              <span>Вес: {weight} {weight ? weightUnit : 'нет данных'}</span>
+              <span>Рост: {height} {height ? heightUnit : 'нет данных'}</span>
             </div>
           </DialogContentText>
         </DialogContent>
