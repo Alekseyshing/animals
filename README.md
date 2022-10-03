@@ -13,11 +13,12 @@
 - [Команда проекта](#команда-проекта)
 
 ## Технологии
--[React UI Tools](https://mui.com/)
+
 - [Tailwindcss](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [React-icons](https://react-icons.github.io/react-icons/)
 - [Axios](https://axios-http.com/)
+- [React UI Tools](https://mui.com/)
 
 ## Использование
 
@@ -26,7 +27,7 @@
 ### Установка зависимостей
 Для установки зависимостей, выполните команду: 
 ```sh
-$ npm i
+npm i
 ```
 ### Запуск Development сервера
 Чтобы запустить сервер для разработки, выполните команду:
@@ -42,15 +43,12 @@ npm run build
 ### Требования
 Для установки и запуска проекта, необходим [NodeJS](https://nodejs.org/) v8+.
 
-### Зачем вы разработали этот проект?
-Чтобы животным было тепло и уютно
 
 ## To do
-- [x] Добавить крутое README
-- [ ] Всё переписать
+- [x] Добавить README
 - [ ] ...
 
 ## Команда проекта
 Оставьте пользователям контакты и инструкции, как связаться с командой разработки.
 
-- [Alexey Shingarev](tg://resolve?domain=alekseyshing) — Front-End Engineer
+- [Alexey Shingarev](https://t.me/alekseyshing) — Front-End Engineer
