@@ -2,16 +2,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface IExecutionsData {
+interface IAnimalsData {
   name: string,
   specName: string,
   element?: React.ReactNode,
   onClick: (id: string) => void;
 }
 
-export function useExecutionsData(token: string | undefined) {
-  const [posts, setPosts] = useState<IExecutionsData[]>();
+export function useAnimalsData(token: string | undefined) {
+  const [animals, setAnimals] = useState<IAnimalsData[]>();
   const getAuthorizationHeader = () => `Bearer ${token}`;
+  const [offset, setOffset] = useState(0);
+  const [perPage] = useState(5);
+  const [pageCount, setPageCount] = useState(0);
 
   const CONFIG = {
     headers: {
@@ -20,32 +23,31 @@ export function useExecutionsData(token: string | undefined) {
     }
   };
 
-  const ANIMALS_URL = "https://acits-test-back.herokuapp.com/api/animals";
+  const ANIMALS_URL = `https://acits-test-back.herokuapp.com/api/animals?limit=${perPage}&offset=${offset}`;
 
   useEffect(() => {
     try {
       axios.get(ANIMALS_URL, CONFIG)
         .then((resp) => {
-          const postsData = resp.data.results;
+          const animalsData = resp.data.results;
+          const dataList: IAnimalsData[] = [];
 
-          const dataList: IExecutionsData[] = [];
-
-          for (let i = 0; i < postsData.length; i++) {
+          for (let i = 0; i < animalsData.length; i++) {
             dataList.push({
-              name: postsData[i].name,
-              specName: postsData[i].spec.name,
-              onClick: () => {}
-            })          
+              name: animalsData[i].name,
+              specName: animalsData[i].spec.name,
+              onClick: () => { }
+            })
           }
-          
-          if (postsData !== undefined) {
-            setPosts(dataList)
+
+          if (animalsData !== undefined) {
+            setAnimals(dataList);
           }
         })
     } catch (error) {
       console.error(error)
     }
   }, [token])
-  return [posts]
+  return [animals]
 }
 

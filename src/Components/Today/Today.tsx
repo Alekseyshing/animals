@@ -10,8 +10,6 @@ import { ExpiredComponent } from "../ExpiredComponent/ExpiredComponent";
 
 export const Today = (): JSX.Element => {
   const token = useToken();
-  console.log(token.myToken);
-
   const [posts] = useExecutionsData(`${token.myToken}`);
 
   return (
