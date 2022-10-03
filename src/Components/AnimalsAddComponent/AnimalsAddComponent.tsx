@@ -49,9 +49,9 @@ export const AnimalsAddComponent = (): JSX.Element => {
 
   return (
     <div>
-      <div className="flex flex-col gap-10 px-20 items-center justify-center">
+      <div className="flex flex-col gap-10 px-20  items-center justify-center">
         <h2 className="text-2xl font-bold">Список наших питомцев</h2>
-        <ul className='flex flex-col gap-5'>
+        <ul className='flex flex-col min-h-[300px] gap-5'>
           {genericAnimals}
         </ul>
         <Pagination animalsPerPage={perPage} totalAnimals={animals.length} paginate={paginate} />
